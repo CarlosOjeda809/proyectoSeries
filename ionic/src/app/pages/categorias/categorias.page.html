@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <swiper-container [slidesPerView]="3" style="gap: 20px; padding-bottom: 10px;">
+    @for (categoria of categorias; track $index) {
+      <swiper-slide (click)="filtrarPorCategoria(categoria)">
+        <ion-row>
+          <ion-col>
+            <ion-row class="ion-justify-content-center">
+              <ion-avatar [ngClass]="{'selected-avatar': categoriaSeleccionada === categoria}" >
+                <ion-img [src]="imagenGenerica"></ion-img>
+              </ion-avatar>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-label class="ion-text-center" style="margin-top: 12px;">
+                {{ categoria }}
+              </ion-label>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </swiper-slide>
+    }
+  </swiper-container>
+
+  <ion-list>
+    @for (serie of series; track $index) {
+      <ion-item [routerLink]="'/tabs/detalles/' + serie._id" style="margin-top: 25px">
+        <ion-avatar slot="start" style="width: 50px; height: 50px;">
+          <ion-img [src]="serie.poster || imagenGenerica"></ion-img>
+        </ion-avatar>
+        <ion-label style="font-size: 1.2rem;">
+          {{ serie.titulo }}
+          <br>
+          <br>
+          <div style="color: cadetblue; font-size: 1rem;">
+            {{ serie.categorias.join(', ') }}
+          </div>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button [routerLink]="'/tabs/buscador/'">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-infinite-scroll (ionInfinite)="infinityScrollEvent($event)" >
+    <ion-infinite-scroll-content loading-spinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

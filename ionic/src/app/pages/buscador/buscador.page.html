@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-toolbar class="toolbar">
+    <ion-searchbar animated="true" (ionInput)="buscar($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list>
+    @for (serie of series; track serie.titulo) {
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ serie.titulo }}</ion-card-title>
+          <ion-card-subtitle>{{ serie.categorias.join(', ') }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item [routerLink]="'/tabs/detalles/' + serie._id">
+              <ion-thumbnail slot="start">
+                <ion-img [src]="serie.poster"></ion-img>
+              </ion-thumbnail>
+              <ion-label>{{ serie.sinopsis }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    }
+  </ion-list>
+</ion-content>

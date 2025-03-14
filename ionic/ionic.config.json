@@ -1,0 +1,7 @@
+{
+  "name": "trabajoSGE",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

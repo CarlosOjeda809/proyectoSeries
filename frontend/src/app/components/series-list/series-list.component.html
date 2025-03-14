@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="w-100 d-flex justify-content-center">
+    <h3 class="mt-2">
+      <button class="btn btn-outline-success "
+              (click)="newSerie()" style="font-size: 22px; width: 400px;">
+        {{series.length}} Series, AÑADIR SERIE
+      </button>
+    </h3>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    @for (serie of series; track $index) {
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 animate__animated animate__fadeInUp card-float"
+             style="background: rgb(235, 235, 235); transition: transform 0.3s ease-in-out;">
+          <div class="row g-0">
+            <div class="col-md-4 align-self-center hover-zoom" (click)="loadSerie(serie)">
+              <img [src]="serie.poster || '/images/imagen-noencontrada.webp'"
+                   [alt]="serie.titulo" class="img-fluid rounded-start">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ serie.titulo }}</h5>
+                <p class="card-text text-danger"><b>Fecha de emisión: </b>{{serie.fecha_emision}}</p>
+                <small class="card-text">{{ serie.sinopsis }}</small>
+                <p class="card-text text-success">{{serie.categorias.join(', ')}}</p>
+              </div>
+              <div class="card-footer bg-transparent border-0">
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="badge p-2" [ngClass]="{'bg-success': serie.numero_capitulos}">
+                    {{ serie.numero_capitulos }} capítulos
+                  </small>
+                  <fa-icon [icon]="faTrashCan" (click)="removeSerie(serie)"
+                           class="text-danger delete-icon"></fa-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

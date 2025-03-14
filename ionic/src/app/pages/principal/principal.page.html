@@ -1,0 +1,26 @@
+<app-header></app-header>
+<ion-content>
+  @for (serie of series; track $index){
+  <ion-card [routerLink]="'/tabs/detalles/' + serie._id">
+    <ion-img [src]="serie.poster"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{serie.titulo}}</ion-card-title>
+      <ion-card-subtitle>{{serie.categorias.join(', ')}}</ion-card-subtitle>
+      <ion-card-subtitle class="text-success">{{serie.fecha_emision.slice(0, 10)}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+  }
+
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button [routerLink]="'/tabs/buscador/'">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-infinite-scroll (ionInfinite)="infinityScrollEvent($event)" >
+    <ion-infinite-scroll-content loading-spinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline" (click)="goBack()" size="large"></ion-icon>
+    </ion-buttons>
+    <ion-buttons class="ion-justify-content-center">
+      <ion-avatar class="ion-margin">
+        <ion-img src="/assets/logo.png" [routerLink]="'/'"></ion-img>
+      </ion-avatar>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-toggle >
+        <ion-button>
+          <ion-icon name="ellipsis-vertical-outline" size="large"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
